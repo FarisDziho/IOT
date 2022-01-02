@@ -1,0 +1,19 @@
+<h1>Sistem za regulisanje temperature</h1>
+
+<div *ngIf="temp" class="wrapper">
+  <h3 class="temp">Vanjska temperatura: {{outsideTemp}} &#176;C</h3><br>
+  <h3 class="temp">Sobna trenutna temperatura: <span class="current-temp">{{temp.current}} &#176;C</span></h3><br>
+  <h3 class="temp">Sobna pozeljna temperatura: <span class="desired-temp">{{temp.desired}} &#176;C</span></h3><br>
+
+  <div class="desired-temp-input">
+    <input type="number" name="" [(ngModel)]="desiredTemp">
+    <button (click) = "changeDesiredTemp()">Promjeni zeljenu temperaturu</button>
+  </div>
+
+  <br><br>
+  <button class="AC-button AC-on" *ngIf="!heaterWorking" (click) = "turnOnHeater()">Upali klimu</button>
+  <button class="AC-button AC-off" *ngIf="heaterWorking" (click) = "turnOffHeater()">Ugasi klimu</button>
+</div>
+<div *ngIf="!temp">
+  <h2>Waiting...</h2>
+</div>

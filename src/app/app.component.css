@@ -1,0 +1,58 @@
+.wrapper {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border:1px solid grey;
+    padding: 40px 20px;
+}
+
+.temp {
+    color: grey;
+}
+
+.current-temp {
+    color:salmon;
+    font-weight: 900;
+}
+
+.desired-temp {
+    color: blue;
+    font-weight: 900;
+}
+
+.desired-temp-input {
+    border: 1px solid grey;
+}
+
+.desired-temp-input input {
+    border: none;
+    outline: none;
+    height: 30px;
+}
+
+.desired-temp-input button {
+    border: none;
+    outline: none;
+    height: 30px;
+    background-color: grey;
+    cursor: pointer;
+}
+
+.AC-button {
+    width: 100%;
+    padding: 10px;
+    background-color: lightseagreen;
+    cursor: pointer;
+    border: none;
+    font-size: 24px;
+}
+
+.AC-on {
+    background-color: blue;
+    color: white;
+}
+
+.AC-off {
+    background-color: salmon;
+}
