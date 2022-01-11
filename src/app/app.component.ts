@@ -8,7 +8,7 @@ export interface Temperature {
   desired:number;
   }
 
-export interface Heater {
+export interface AC {
   working:boolean;
 }
 
@@ -33,9 +33,9 @@ export class AppComponent implements OnInit{
   temp:Temperature | null= null;
   desiredTemp!:number | null;
 
-  private heaterDoc: AngularFirestoreDocument<Heater>;
-  heaterObservable: Observable<Heater | undefined>;
-  heaterWorking!: boolean;
+  private ACDoc: AngularFirestoreDocument<AC>;
+  ACObservable: Observable<AC | undefined>;
+  ACWorking!: boolean;
 
   timerSubscription: Subscription; 
 
@@ -45,14 +45,14 @@ export class AppComponent implements OnInit{
         afs.collection<Temperature>('temperature').doc('1').set(this.defTemp);
     });
     this.tempDoc = afs.collection<Temperature>('temperature').doc("1");
-    this.heaterDoc = afs.collection<Temperature>('heater').doc("1");
+    this.ACDoc = afs.collection<Temperature>('AC').doc("1");
 
     this.tempObservable = this.tempDoc.valueChanges();
-    this.heaterObservable = this.heaterDoc.valueChanges();
+    this.ACObservable = this.ACDoc.valueChanges();
 
     this.timerSubscription = timer(0, 300).pipe( 
       map(() => { 
-        this.checkIfACWorking(); // load data contains the http request 
+        this.checkIfACWorking(); 
       }) 
     ).subscribe(); 
   }
@@ -63,9 +63,9 @@ export class AppComponent implements OnInit{
           this.temp =t;
       })
 
-      this.heaterObservable.subscribe(t => {
+      this.ACObservable.subscribe(t => {
         if(t)
-          this.heaterWorking =t.working;
+          this.ACWorking =t.working;
       })
 
       this.checkIfACWorking();
@@ -80,16 +80,16 @@ export class AppComponent implements OnInit{
     this.desiredTemp = null;
   }
 
-  turnOnHeater () {
-    this.afs.collection<Heater>('heater').doc("1").set({working:true});
+  turnOnAC () {
+    this.afs.collection<AC>('AC').doc("1").set({working:true});
   }
 
-  turnOffHeater () {
-    this.afs.collection<Heater>('heater').doc("1").set({working:false});
+  turnOffAC () {
+    this.afs.collection<AC>('AC').doc("1").set({working:false});
   }
 
   checkIfACWorking(){
-    if(this.heaterWorking)
+    if(this.ACWorking)
        this.controlRoomTempWithAC();
     else
       this.controlRoomTempWithoutAC();

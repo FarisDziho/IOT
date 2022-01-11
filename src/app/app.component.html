@@ -11,8 +11,8 @@
   </div>
 
   <br><br>
-  <button class="AC-button AC-on" *ngIf="!heaterWorking" (click) = "turnOnHeater()">Upali klimu</button>
-  <button class="AC-button AC-off" *ngIf="heaterWorking" (click) = "turnOffHeater()">Ugasi klimu</button>
+  <button class="AC-button AC-on" *ngIf="!ACWorking" (click) = "turnOnAC()">Upali klimu</button>
+  <button class="AC-button AC-off" *ngIf="ACWorking" (click) = "turnOffAC()">Ugasi klimu</button>
 </div>
 <div *ngIf="!temp">
   <h2>Waiting...</h2>
